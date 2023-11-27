@@ -1,0 +1,157 @@
+.container-principal {
+    background-color: #ec1;
+    padding: 10px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.container-inputs {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.container-button {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+input {
+    font-size: 20px;
+}
+
+textarea {
+    font-size: 20px;
+}
+
+#button-guardar {
+    background-color: green;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+#button-guardar:hover {
+    background-color: #3d1;
+    color: #000;
+}
+
+#button-borrar {
+    background-color: #c12;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+#button-borrar:hover {
+    background-color: #e22;
+    color: #000;
+}
+
+.buscadores {
+    margin-top: 20px;
+}
+
+#search {
+    width: 70%;
+    text-align: center;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 10px;
+    margin-left: 50px;
+}
+
+#search:focus{
+    background-color: #ccc;
+}
+
+/* Formateamos el label que servirá de contenedor */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-left: 50px;
+    margin-right: 10px;
+}
+
+/* Ocultamos el checkbox html */
+.switch input {
+    display: none;
+}
+
+/* Formateamos la caja del interruptor sobre la cual se deslizará la perilla de control o slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    left: 0;
+    right: 0;
+    bottom: -10px;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+/* Pintamos la perilla de control o slider usando el selector before */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+/* Cambiamos el color de fondo cuando el checkbox esta activado */
+input:checked+.slider {
+    background-color: #1a02f0;
+}
+
+/* Deslizamos el slider a la derecha cuando el checkbox esta activado */
+input:checked+.slider:before {
+
+    transform: translateX(26px);
+}
+
+/* Aplicamos efecto de bordes redondeados en slider y en el fondo del slider */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#div-notas {
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #69f;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.tamañoCard{
+    width: 18rem;
+}

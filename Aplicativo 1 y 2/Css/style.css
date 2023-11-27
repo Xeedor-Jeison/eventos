@@ -1,0 +1,36 @@
+.container {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    width: 35%;
+    height: 400px;
+    background-color: beige;
+}
+
+.container-ecuacion{
+    margin-left: 20px;
+}
+
+.container-resultado{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+.calc{
+    margin-left: 90%;
+    background-color: #12f;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 20px;
+}
+.calc:hover{
+    background-color: #c9a;
+    color: #12f;
+}
+input{
+    height: 40px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}

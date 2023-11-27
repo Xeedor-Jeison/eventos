@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Css/style.css">
+    <title>Ejercicios Eventos</title>
+</head>
+<body>
+    <h2>Aplicación 1, Masa Corporal</h2>
+
+    <div class="container">
+        <div id="ecuacion" class="container-ecuacion" >
+            <h3>
+                ESTATURA
+            </h3>
+            <p>
+                En centimetros:
+            </p>
+            <input type="number" name="estatura" id="estatura-centimetros" placeholder="173">
+
+            <h3>
+                Peso
+            </h3>
+            <p>
+                En kilogramos:
+            </p>
+            <input type="number" name="peso" id="peso-kg" placeholder="62">
+            <br>
+            <button class="calc" id="boton" >Calcular</button>
+            
+        </div>
+
+        <div class="container-resultado">
+            <label>Resultado
+                <input type="number" id="result" placeholder="20.7">
+            </label>
+        </div>
+        
+    </div>
+
+    <h2>Aplicación 2, Cambio de divisas</h2>
+    
+    <div>
+        <input type="number" id="cop">
+        <label>
+            Pesos Colombianos
+        </label>
+        <br>
+        
+        <input type="number" id="usd" >
+        <label>
+            Dolar   
+        </label>
+    </div>
+
+    <h2>Aplicación 3, Notas Rapidas</h2>
+
+    <script src="./Javascript/main.js"></script>
+</body>
+</html>
