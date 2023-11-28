@@ -17,12 +17,18 @@ let notas = [
         texto: "Tengo que programar",
         realizada: false
     },
+    {
+        id: 4,
+        titulo: "No olvidar cita medica",
+        texto: "Cita medica, medicina general para el dia viernes",
+        realizada: false
+    },
 ]
 
-let idGlobal = 3
+let idGlobal = 4
 let taskView = document.getElementById("div-notas")
 
-function pintarTarjetas(array, divPrincipal) {
+function pintarTarjetas(array) {
 
     taskView.innerHTML = " "
 
@@ -54,7 +60,7 @@ function pintarTarjetas(array, divPrincipal) {
                     </div>
                     </div>
                     </div>`
-                        divPrincipal.appendChild(card)
+                        taskView.appendChild(card)
                     }
 
                 }
@@ -74,7 +80,7 @@ function agregarNota(titulo, texto) {
         realizada: false
     }
     notas.push(nuevaNota)
-    pintarTarjetas(notas, taskView)
+    pintarTarjetas(notas)
 }
 
 document.getElementById("button-guardar").addEventListener("click", guardarNota);
@@ -91,7 +97,7 @@ function guardarNota() {
     }
     else {
         agregarNota(title, descripcion)
-        pintarTarjetas(notas, taskView)
+        pintarTarjetas(notas)
     }
     limpiar()
 }
@@ -102,7 +108,7 @@ function deleteTask(id) {
             notas.splice(i, 1);
         }
     }
-    pintarTarjetas(notas, taskView)
+    pintarTarjetas(notas)
 }
 function deleteinputTasks(id) {
     let filter = filtrarRealizadas(notas)
@@ -113,7 +119,7 @@ function deleteinputTasks(id) {
             }
         }
     }
-    pintarTarjetas(filter, taskView)
+    pintarTarjetas(filter)
 }
 
 function limpiar() {
@@ -125,7 +131,7 @@ function limpiar() {
 document.getElementById("button-borrar").addEventListener("click", deleteInput);
 
 function deleteInput() {
-    pintarTarjetas(notas, taskView)
+    pintarTarjetas(notas)
     limpiar()
 }
 
@@ -134,52 +140,41 @@ function marcarRealizada(id) {
         if (notas[i].id == id) {
             if (notas[i].realizada == false) {
                 notas[i].realizada = true
-
             }
             else {
                 notas[i].realizada = false
             }
-
         }
     }
-
-
-
 }
 
-document.getElementById("checkbox").addEventListener("click", filtrosGeneral)
+document.getElementById("checkbox").addEventListener("click", checkboxFilter)
+
+document.getElementById("search").addEventListener("keyup", checkboxFilter)
 
 function checkboxFilter() {
-    let escucharInput = document.getElementById("checkbox").checked
-    if (escucharInput == true) {
-        let filter = filtrarRealizadas(notas)
-        pintarTarjetas(filter, taskView)
-    }
-    else {
-        pintarTarjetas(notas, taskView)
-    }
-    
-}
-function filtrosGeneral(){
+
     let escucharInput = document.getElementById("checkbox").checked
     let search = document.getElementById("search").value.toLowerCase()
-    console.log(search.length)
+    let filtroBusquedad = filterText(notas, search)
+    for (let i = 0; i < notas.length; i++) {
+        let realizada = notas[i].realizada
 
-    if(escucharInput == true && search.length == 0){
-        checkboxFilter()
-    }
-    if (escucharInput == true && search.length > 0) {
-        filtro()
-        checkboxFilter()
-        
-    }
-    if (escucharInput == false && search.length == 0) {
-        pintarTarjetas(notas,taskView)
-    }
-    if (escucharInput == false && search.length > 0) {
-        filtro()
+        if (escucharInput) {
+            if (realizada) {
+                let filter = filtrarRealizadas(notas)
+                filtroBusquedad = filterText(filter, search)
+                pintarTarjetas(filtroBusquedad)
+            }
+        }
+        else {
+            if (search.length >= 0) {
+                pintarTarjetas(filtroBusquedad)
+            }
+        }
     }
 }
+
 
 function filtrarRealizadas(array) {
     let tasksFilter = []
@@ -187,56 +182,29 @@ function filtrarRealizadas(array) {
     for (let i = 0; i < array.length; i++) {
         if (array[i].realizada == true) {
             tasksFilter.push(array[i])
-            console.log(tasksFilter)
+
         }
     }
     return tasksFilter
 }
 
-
-document.getElementById("search").addEventListener("keyup", filtrosGeneral)
-
-function filtro() {
-    let search = document.getElementById("search").value.toLowerCase()
-    let filtroBusquedad = filterText(notas, search)
-    
-    if(filtroBusquedad == 0){
-        pintarTarjetas(notas,taskView)
-    }
-    else{
-        pintarTarjetas(filtroBusquedad,taskView)
-    }
-}
-
 function filterText(array, texto) {
+
     let tasksFilter = []
     for (let i = 0; i < array.length; i++) {
-        let data = Object.values(array[i].titulo)
-        let newString = data.toString().toLowerCase()
-        let newData = newString.replaceAll(",", "")
-        newData = newData.split(" ")
-        let datoUsuario = newData.includes(texto)
-
-        let data2 = Object.values(array[i].texto)
-        let newString2 = data2.toString().toLowerCase()
-        let newData2 = newString2.replaceAll(",", "")
-        newData2 = newData2.split(" ")
-        let datoUsuario2 = newData2.includes(texto)
-
-
-        if (datoUsuario) {
-            if (datoUsuario2 != true) {
+        let title = array[i].titulo.toLowerCase()
+        let descripcion = array[i].texto.toLowerCase()
+        let textoUsuario = title.includes(texto)
+        let textoUsuarioTexto = descripcion.includes(texto)
+        if (textoUsuario) {
+            if (textoUsuarioTexto != true) {
                 tasksFilter.push(array[i])
             }
-
         }
-        if (datoUsuario2 == true) {
-                tasksFilter.push(array[i])
-
+        if (textoUsuarioTexto) {
+            tasksFilter.push(array[i])
         }
-
     }
-
     return tasksFilter
 }
 
