@@ -27,6 +27,8 @@ let notas = [
 
 let idGlobal = 4
 let taskView = document.getElementById("div-notas")
+let tachado = false
+console.log(tachado)
 
 function pintarTarjetas(array) {
 
@@ -47,6 +49,7 @@ function pintarTarjetas(array) {
                 let descripcion = array[i].texto;
                 let id = array[i].id;
                 let realizada = array[i].realizada
+                
                 if (array[i] != undefined) {
                     if (title && descripcion) {
                         let card = document.createElement("div")
